@@ -7,7 +7,7 @@ const Terminal = () => {
   const [currentCommand, setCurrentCommand] = useState('');
   const [output, setOutput] = useState([
     'Welcome to Szymon Florek\'s Portfolio Terminal!',
-    'Type \'help\' to see available commands.'
+    'Type <span class="command-highlight">help</span> to see available commands or <span class="command-highlight">portfolio</span> for a visual experience.'
   ]);
   const [isPortfolioVisible, setIsPortfolioVisible] = useState(false);
   const [currentDirectory, setCurrentDirectory] = useState('~');
@@ -78,32 +78,35 @@ const Terminal = () => {
 
   const commands = {
     help: () => {
+      const commandList = [
+        ['about', 'Display information about me'],
+        ['projects', 'View my projects'],
+        ['skills', 'View my technical skills'],
+        ['contact', 'Display my contact information'],
+        ['interests', 'View my personal interests'],
+        ['education', 'View my educational background'],
+        ['portfolio', 'View my professional portfolio'],
+        ['matrix', 'Enter the Matrix'],
+        ['quote', 'Display a random programming quote'],
+        ['clear', 'Clear the terminal'],
+        ['help', 'Display this help message']
+      ];
+      
       return `Available commands:
 
-${[
-  ['about',    'Display information about Szymon Florek'],
-  ['projects', 'List my projects'],
-  ['skills',   'Show my technical skills'],
-  ['contact',  'Display contact information'],
-  ['interests','Show my personal interests'],
-  ['education','Show my education details'],
-  ['clear',    'Clear the terminal screen'],
-  ['theme',    'Change terminal theme (try: default, hacker, retro, synthwave)'],
-  ['matrix',   'Enter the Matrix (Easter egg)'],
-  ['neofetch', 'Display system information'],
-  ['weather',  'Show current weather (try: sunny, rainy, cloudy, snowy, stormy)'],
-  ['sudo',     'Execute command with superuser privileges (try: sudo rm -rf /)'],
-  ['help',     'Display this help message']
-].map(([cmd, desc]) => 
+${commandList.map(([cmd, desc]) => 
   `${cmd.padEnd(10)} - ${desc}`
 ).join('\n')}`;
     },
-    about: () => `About Me:
-• Computer Science Student (3rd year) at WAT (Military University of Technology)
-• Focusing on Data Science and Machine Learning
-• Exploring software development and AI
-• Building practical skills through hands-on projects
-• 21 years old`,
+    about: () => {
+      return `<div class="about-section">
+        <h2>About Me</h2>
+        <p>Hello! I'm Szymon Florek, a software developer with a passion for creating innovative solutions.</p>
+        <p>I'm currently a 3rd year Computer Science student at Wojskowa Akademia Techniczna (WAT), focusing on Data Science and Machine Learning.</p>
+        <p>I enjoy working with various technologies and am always eager to learn new skills.</p>
+        <p>For a more visual representation of my work and skills, type <span class="command-highlight" onclick="document.getElementById('command-input').value='portfolio'; document.getElementById('command-input').dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}))">portfolio</span> or click the button in the header.</p>
+      </div>`;
+    },
     projects: () => {
       const projectsList = projects.map((project, index) => 
         `Project ${index + 1}: ${project.name}
@@ -253,6 +256,29 @@ README.md`,
           'Follow the white rabbit.',
           'Knock, knock, Neo.'
         ]);
+        
+        // Add falling code animation after a delay
+        setTimeout(() => {
+          setOutput(prev => [
+            ...prev,
+            `<div class="matrix-code">
+              <pre style="color: #00ff00; text-shadow: 0 0 5px #00ff00; font-family: monospace; overflow: hidden;">
+01001110 01100101 01101111 00001010 01010111 01100001 01101011 01100101 00100000 01110101 01110000 00001010
+01010100 01101000 01100101 00100000 01001101 01100001 01110100 01110010 01101001 01111000 00100000 01101000
+01100001 01110011 00100000 01111001 01101111 01110101 00001010 01000110 01101111 01101100 01101100 01101111
+01110111 00100000 01110100 01101000 01100101 00100000 01110111 01101000 01101001 01110100 01100101 00100000
+01110010 01100001 01100010 01100010 01101001 01110100 00001010 01001011 01101110 01101111 01100011 01101011
+00101100 00100000 01101011 01101110 01101111 01100011 01101011 00101100 00100000 01001110 01100101 01101111
+              </pre>
+            </div>`,
+            `<div style="color: #00ff00; margin-top: 20px; text-shadow: 0 0 5px #00ff00;">
+              <p>Choose your pill:</p>
+              <p><span class="terminal-link red-pill" onclick="document.getElementById('command-input').value='red pill'; document.getElementById('command-input').dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}))">Red Pill</span> <span class="terminal-link blue-pill" onclick="document.getElementById('command-input').value='blue pill'; document.getElementById('command-input').dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}))">Blue Pill</span></p>
+              <p style="margin-top: 10px;">Red Pill - See how deep the rabbit hole goes</p>
+              <p>Blue Pill - Return to normal terminal</p>
+            </div>`
+          ]);
+        }, 3000);
       }, 500);
       
       return 'Loading Matrix sequence...';
@@ -304,74 +330,48 @@ README.md`,
   </div>
 </div>`;
     },
-    weather: (args) => {
-      const weatherTypes = {
-        sunny: {
-          art: `
-    \\   /
-     .-.
-  ― (   ) ―
-     \`-'
-    /   \\
-          `,
-          description: 'Sunny day with clear skies. Perfect for coding outside!'
-        },
-        rainy: {
-          art: `
-     .-.
-    (   ).
-   (___(__)
-  ‚'‚'‚'‚'
-  ‚'‚'‚'‚'
-          `,
-          description: 'Rainy day. Stay inside and code!'
-        },
-        cloudy: {
-          art: `
-      .--.
-   .-(    ).
-  (___.__)__)
-          `,
-          description: 'Cloudy with a chance of debugging.'
-        },
-        snowy: {
-          art: `
-     .-.
-    (   ).
-   (___(__)
-   * * * *
-  * * * *
-          `,
-          description: 'Snowy day. Time for hot cocoa and coding!'
-        },
-        stormy: {
-          art: `
-      .-.
-     (   ).
-    (___(__)
-     ⚡ ⚡ ⚡
-    ‚'‚'‚'‚'
-          `,
-          description: 'Thunderstorms detected. Backup your code!'
-        }
-      };
+    quote: () => {
+      const quotes = [
+        { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+        { text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler" },
+        { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+        { text: "Programming isn't about what you know; it's about what you can figure out.", author: "Chris Pine" },
+        { text: "The most disastrous thing that you can ever learn is your first programming language.", author: "Alan Kay" },
+        { text: "The function of good software is to make the complex appear to be simple.", author: "Grady Booch" },
+        { text: "Software is like entropy: It is difficult to grasp, weighs nothing, and obeys the Second Law of Thermodynamics; i.e., it always increases.", author: "Norman Augustine" },
+        { text: "Simplicity is the soul of efficiency.", author: "Austin Freeman" },
+        { text: "Before software can be reusable it first has to be usable.", author: "Ralph Johnson" },
+        { text: "Make it work, make it right, make it fast.", author: "Kent Beck" },
+        { text: "Computers are good at following instructions, but not at reading your mind.", author: "Donald Knuth" },
+        { text: "It's not a bug – it's an undocumented feature.", author: "Anonymous" },
+        { text: "The best thing about a boolean is even if you are wrong, you are only off by a bit.", author: "Anonymous" },
+        { text: "If debugging is the process of removing software bugs, then programming must be the process of putting them in.", author: "Edsger W. Dijkstra" },
+        { text: "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.", author: "John Woods" },
+        { text: "There are two ways to write error-free programs; only the third one works.", author: "Alan J. Perlis" },
+        { text: "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.", author: "Bill Gates" },
+        { text: "Nine people can't make a baby in a month.", author: "Fred Brooks" },
+        { text: "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code.", author: "Dan Salomon" },
+        { text: "Without requirements or design, programming is the art of adding bugs to an empty text file.", author: "Louis Srygley" }
+      ];
       
-      // Default to a random weather if no args provided
-      let weather = args;
-      if (!weather || !weatherTypes[weather]) {
-        const weathers = Object.keys(weatherTypes);
-        weather = weathers[Math.floor(Math.random() * weathers.length)];
-      }
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
       
-      const selectedWeather = weatherTypes[weather];
-      
-      return `<div style="color: #00ffff;">
-  <pre>${selectedWeather.art}</pre>
-  <p>Current weather: <span style="color: #ffffff;">${weather}</span></p>
-  <p>${selectedWeather.description}</p>
-  <p>Temperature: <span style="color: #ffffff;">${Math.floor(Math.random() * 30) + 10}°C</span></p>
-  <p>Humidity: <span style="color: #ffffff;">${Math.floor(Math.random() * 60) + 40}%</span></p>
-</div>`;
+      return `<div style="color: #ffffff; padding: 10px; border-left: 4px solid #00ffff; margin: 10px 0;">
+        <p style="font-style: italic; font-size: 16px;">"${randomQuote.text}"</p>
+        <p style="text-align: right; color: #00ffff;">— ${randomQuote.author}</p>
+      </div>`;
+    },
+    portfolio: () => {
+      setIsPortfolioVisible(true);
+      return `<div style="text-align: center; padding: 20px; color: #64ffda;">
+        <h2 style="margin-bottom: 15px;">Opening Professional Portfolio View</h2>
+        <p style="margin-bottom: 10px;">Switching to a more visual representation of my portfolio...</p>
+        <div style="font-size: 24px; margin: 20px 0;">
+          <span class="loading-dot">.</span>
+          <span class="loading-dot">.</span>
+          <span class="loading-dot">.</span>
+        </div>
+      </div>`;
     }
   };
 
@@ -459,12 +459,15 @@ README.md`,
       {isTerminalVisible && (
         <div className="terminal">
           <div className="terminal-header">
-            <div className="controls">
-              <div className="control close" onClick={handleCloseTerminal}></div>
-              <div className="control minimize" onClick={handleMinimizeTerminal}></div>
-              <div className="control maximize" onClick={handleMaximizeTerminal}></div>
+            <div className="terminal-controls">
+              <span className="control close" onClick={() => setIsTerminalVisible(false)}></span>
+              <span className="control minimize" onClick={() => setIsTerminalMinimized(!isTerminalMinimized)}></span>
+              <span className="control maximize" onClick={() => setIsTerminalMaximized(!isTerminalMaximized)}></span>
             </div>
-            <div className="title">portfolio@macbook-pro ~ {isTerminalMinimized ? '(minimized)' : ''} {isTerminalMaximized ? '(maximized)' : ''}</div>
+            <div className="terminal-title">
+              <span>szymon@portfolio</span>
+              <span className="status-indicator">●</span>
+            </div>
           </div>
           <div className={`terminal-content ${isDeleting ? 'deleting' : ''}`} ref={outputRef}>
             {!isPortfolioVisible ? (
@@ -494,51 +497,168 @@ README.md`,
               </>
             ) : (
               <div id="portfolio-content">
-                <div className="back-button" onClick={() => setIsPortfolioVisible(false)}>
+                <div className="portfolio-back-button" onClick={() => setIsPortfolioVisible(false)}>
                   [Press ESC or click here to return to terminal]
                 </div>
-                <div className="section-title">SIMON | CS STUDENT & TECH ENTHUSIAST</div>
-                <p>Computer Science student (3rd year) at WAT (Wojskowa Akademia Techniczna), focusing on Data Science and Machine Learning.</p>
-                <p>Currently exploring the vast world of software development and AI while building practical skills through hands-on projects.</p>
                 
-                <div className="section-title">PROJECTS:</div>
-                {projects.map((project, index) => (
-                  <div key={index} className="project-card">
-                    <h3>→ {project.name}</h3>
-                    <p>{project.description}</p>
-                    <div className="tech-stack">
-                      Technologies: {project.tech.join(', ')}
+                <div className="portfolio-header">
+                  <div className="portfolio-name">SZYMON FLOREK</div>
+                  <div className="portfolio-title">Computer Science Student & Tech Enthusiast</div>
+                </div>
+                
+                <div className="portfolio-about">
+                  <div className="section-title">ABOUT ME</div>
+                  <p>Computer Science student (3rd year) at WAT (Wojskowa Akademia Techniczna), focusing on Data Science and Machine Learning. I'm passionate about solving complex problems through code and exploring new technologies.</p>
+                  <p>Currently exploring the vast world of software development and AI while building practical skills through hands-on projects.</p>
+                </div>
+                
+                <div className="portfolio-section">
+                  <div className="section-title">PROJECTS</div>
+                  <div className="projects-grid">
+                    {projects.map((project, index) => (
+                      <div key={index} className="project-card">
+                        <h3>{project.name}</h3>
+                        <p className="project-description">{project.description}</p>
+                        <div className="tech-stack">
+                          {project.tech.map((tech, i) => (
+                            <span key={i} className="tech-tag">{tech}</span>
+                          ))}
+                        </div>
+                        <div className="project-link">
+                          <a href={`https://${project.link}`} target="_blank" rel="noopener noreferrer" className="terminal-link">
+                            View Project →
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="portfolio-section">
+                  <div className="section-title">TECHNICAL SKILLS</div>
+                  <div className="skills-container">
+                    <div className="skill-category">
+                      <h4>Programming Languages</h4>
+                      <div className="skills-grid">
+                        {skills.languages.map((skill, index) => (
+                          <div key={index} className="skill">
+                            <div className="skill-header">
+                              <span>{skill.name}</span>
+                              <span className="percentage">{skill.level}%</span>
+                            </div>
+                            <div className="progress-bar">
+                              <div className="progress" style={{ width: `${skill.level}%` }}></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="project-link">
-                      <a href={`https://${project.link}`} target="_blank" rel="noopener noreferrer" className="terminal-link">
-                        {project.link}
-                      </a>
+                    
+                    <div className="skill-category">
+                      <h4>Tools & Technologies</h4>
+                      <div className="skills-grid">
+                        {skills.tools.map((skill, index) => (
+                          <div key={index} className="skill">
+                            <div className="skill-header">
+                              <span>{skill.name}</span>
+                              <span className="percentage">{skill.level}%</span>
+                            </div>
+                            <div className="progress-bar">
+                              <div className="progress" style={{ width: `${skill.level}%` }}></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="skill-category">
+                      <h4>Databases</h4>
+                      <div className="skills-grid">
+                        {skills.databases.map((skill, index) => (
+                          <div key={index} className="skill">
+                            <div className="skill-header">
+                              <span>{skill.name}</span>
+                              <span className="percentage">{skill.level}%</span>
+                            </div>
+                            <div className="progress-bar">
+                              <div className="progress" style={{ width: `${skill.level}%` }}></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                ))}
+                  
+                  <div className="learning-section">
+                    <h4>Currently Learning</h4>
+                    <div className="learning-tags">
+                      <span className="learning-tag">Machine Learning</span>
+                      <span className="learning-tag">Data Science</span>
+                      <span className="learning-tag">Cloud Computing</span>
+                      <span className="learning-tag">Software Development</span>
+                      <span className="learning-tag">Web Development</span>
+                    </div>
+                  </div>
+                </div>
                 
-                <div className="section-title">TECHNICAL STACK:</div>
-                <p>Languages: Python, SQL, C++, Java, C, JavaScript, TypeScript</p>
-                <p>Tools: Docker, Git, Jupyter Notebook, JetBrains Stack</p>
-                <p>Databases: MySQL, MongoDB, Oracle, Weaviate, Azure MongoDB vCore</p>
-                <p>Learning: Machine Learning, Data Science Libraries, Cloud Platforms</p>
+                <div className="portfolio-section">
+                  <div className="section-title">EDUCATION</div>
+                  <div className="education-item">
+                    <h4>Computer Science</h4>
+                    <p>Wojskowa Akademia Techniczna (WAT)</p>
+                    <p>3rd year student</p>
+                    <p>Focus on Data Science and Machine Learning</p>
+                  </div>
+                </div>
                 
-                <div className="section-title">INTERESTS:</div>
-                <p>Chess • Bouldering • Woodworking • Coding • Reading</p>
+                <div className="portfolio-section">
+                  <div className="section-title">INTERESTS</div>
+                  <div className="interests-container">
+                    <div className="interest-item">
+                      <span className="interest-icon">♟️</span>
+                      <span>Chess</span>
+                    </div>
+                    <div className="interest-item">
+                      <span className="interest-icon">🧗</span>
+                      <span>Bouldering</span>
+                    </div>
+                    <div className="interest-item">
+                      <span className="interest-icon">🪚</span>
+                      <span>Woodworking</span>
+                    </div>
+                    <div className="interest-item">
+                      <span className="interest-icon">💻</span>
+                      <span>Coding</span>
+                    </div>
+                    <div className="interest-item">
+                      <span className="interest-icon">📚</span>
+                      <span>Reading</span>
+                    </div>
+                  </div>
+                </div>
                 
-                <div className="section-title">CONTACT:</div>
-                <p>
-                  <span>📧 Email: </span>
-                  <a href="mailto:szymon.florek@student.wat.edu.pl" className="terminal-link">szymon.florek@student.wat.edu.pl</a>
-                </p>
-                <p>
-                  <span>🌐 GitHub: </span>
-                  <a href="https://github.com/Floressek" target="_blank" rel="noopener noreferrer" className="terminal-link">github.com/Floressek</a>
-                </p>
-                <p>
-                  <span>💼 LinkedIn: </span>
-                  <a href="https://linkedin.com/in/szymon-florek-33a968296" target="_blank" rel="noopener noreferrer" className="terminal-link">linkedin.com/in/szymon-florek-33a968296</a>
-                </p>
+                <div className="portfolio-section">
+                  <div className="section-title">CONTACT</div>
+                  <div className="contact-container">
+                    <div className="contact-item">
+                      <span className="contact-icon">📧</span>
+                      <a href="mailto:szymon.florek@student.wat.edu.pl" className="terminal-link">szymon.florek@student.wat.edu.pl</a>
+                    </div>
+                    <div className="contact-item">
+                      <span className="contact-icon">🌐</span>
+                      <a href="https://github.com/Floressek" target="_blank" rel="noopener noreferrer" className="terminal-link">github.com/Floressek</a>
+                    </div>
+                    <div className="contact-item">
+                      <span className="contact-icon">💼</span>
+                      <a href="https://linkedin.com/in/szymon-florek-33a968296" target="_blank" rel="noopener noreferrer" className="terminal-link">linkedin.com/in/szymon-florek-33a968296</a>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="portfolio-footer">
+                  <p>This portfolio is built with React and styled to resemble a terminal interface.</p>
+                  <p>Type 'help' in the terminal to see available commands.</p>
+                </div>
               </div>
             )}
           </div>
