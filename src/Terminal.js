@@ -11,6 +11,7 @@ const Terminal = () => {
   ]);
   const [isPortfolioVisible, setIsPortfolioVisible] = useState(false);
   const [currentDirectory, setCurrentDirectory] = useState('~');
+  const [isDeleting, setIsDeleting] = useState(false);
   const inputRef = useRef(null);
   const outputRef = useRef(null);
 
@@ -83,12 +84,6 @@ ${[
   ['interests','Show my personal interests'],
   ['education','Show my education details'],
   ['clear',    'Clear the terminal screen'],
-  ['ls',       'List directory contents'],
-  ['cat',      'Display file contents'],
-  ['pwd',      'Print working directory'],
-  ['cd',       'Change directory'],
-  ['echo',     'Display a message'],
-  ['date',     'Display current date and time'],
   ['help',     'Display this help message']
 ].map(([cmd, desc]) => 
   `${cmd.padEnd(10)} - ${desc}`
@@ -183,7 +178,51 @@ README.md`,
     },
     echo: (args) => args || '',
     date: () => new Date().toLocaleString(),
-    whoami: () => 'szymon'
+    whoami: () => 'szymon',
+    sudo: (args) => {
+      if (args === 'rm -rf /' || args === 'rm -rf /*') {
+        setTimeout(() => {
+          setIsDeleting(true);
+          setTimeout(() => {
+            setOutput([
+              'Welcome to Szymon Florek\'s Portfolio Terminal!',
+              'Type \'help\' to see available commands.',
+              'Just kidding! Your system is safe. 😉'
+            ]);
+            setIsDeleting(false);
+          }, 5000);
+        }, 1000);
+        
+        return `<div style="color: red; font-weight: bold;">
+██    ██  ██████  ██    ██     ████████ ██   ██ ██ ███    ██ ██   ██     
+ ██  ██  ██    ██ ██    ██        ██    ██   ██ ██ ████   ██ ██  ██      
+  ████   ██    ██ ██    ██        ██    ███████ ██ ██ ██  ██ █████       
+   ██    ██    ██ ██    ██        ██    ██   ██ ██ ██  ██ ██ ██  ██      
+   ██     ██████   ██████         ██    ██   ██ ██ ██   ████ ██   ██     
+                                                                         
+████████ ██   ██ ██ ███████     ██ ███████                               
+   ██    ██   ██ ██ ██          ██ ██                                    
+   ██    ███████ ██ ███████     ██ ███████                               
+   ██    ██   ██ ██      ██     ██      ██                               
+   ██    ██   ██ ██ ███████     ██ ███████                               
+                                                                         
+██████   █████  ██████                                                   
+██   ██ ██   ██ ██   ██                                                  
+██████  ███████ ██   ██                                                  
+██   ██ ██   ██ ██   ██                                                  
+██████  ██   ██ ██████                                                   
+                                                                         
+██ ██████  ███████  █████                                                
+██ ██   ██ ██      ██   ██                                               
+██ ██   ██ █████   ███████                                               
+██ ██   ██ ██      ██   ██                                               
+██ ██████  ███████ ██   ██                                               
+</div>
+
+<span style="color: red; font-weight: bold;">System will now delete itself in 5 seconds...</span>`;
+      }
+      return `sudo: ${args}: command not found`;
+    }
   };
 
   const getProgressBar = (level) => {
@@ -255,7 +294,7 @@ README.md`,
           </div>
           <div className="title">portfolio@macbook-pro ~</div>
         </div>
-        <div className="terminal-content" ref={outputRef}>
+        <div className={`terminal-content ${isDeleting ? 'deleting' : ''}`} ref={outputRef}>
           {!isPortfolioVisible ? (
             <>
               <div id="terminal-output">
@@ -277,6 +316,7 @@ README.md`,
                   onChange={(e) => setCurrentCommand(e.target.value)}
                   onKeyDown={handleKeyDown}
                   autoFocus
+                  disabled={isDeleting}
                 />
               </div>
             </>

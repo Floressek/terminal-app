@@ -376,3 +376,101 @@ body {
 .back-button:active {
     transform: translateY(0);
 }
+
+.terminal-link {
+    color: #00BFFF;
+    text-decoration: none;
+    border-bottom: 1px dotted #00BFFF;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.terminal-link:hover {
+    color: #00FFFF;
+    border-bottom: 1px solid #00FFFF;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+.project-link {
+    margin-top: 4px;
+    padding-left: 16px;
+}
+
+/* Fix for links in terminal output */
+#terminal-output a {
+    color: #00BFFF;
+    text-decoration: none;
+    border-bottom: 1px dotted #00BFFF;
+    transition: all 0.2s ease;
+}
+
+#terminal-output a:hover {
+    color: #00FFFF;
+    border-bottom: 1px solid #00FFFF;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+}
+
+/* Deleting animation */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-5px, 5px);
+    }
+    40% {
+        transform: translate(-5px, -5px);
+    }
+    60% {
+        transform: translate(5px, 5px);
+    }
+    80% {
+        transform: translate(5px, -5px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    25% { opacity: 0.5; }
+    50% { opacity: 0.7; }
+    75% { opacity: 0.2; }
+}
+
+.deleting {
+    animation: shake 0.5s infinite, flicker 0.3s infinite;
+    position: relative;
+}
+
+.deleting::before {
+    content: "DELETING SYSTEM...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0 0 10px red;
+    z-index: 100;
+    animation: glitch 0.3s infinite;
+}
+
+.deleting::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 0, 0.1);
+    z-index: 1;
+}
