@@ -458,6 +458,19 @@ body {
     box-shadow: 0 0 20px rgba(0, 255, 0, 1);
 }
 
+/* Override any terminal-link styling for project links */
+.project-link a.terminal-link,
+.project-link a.terminal-link:hover {
+    color: #000000;
+    text-shadow: none;
+    border-bottom: none;
+    background-color: #00ff00;
+}
+
+.project-link a.terminal-link:hover {
+    background-color: #ffffff;
+}
+
 /* Fix for links in terminal output */
 #terminal-output a {
     color: #00BFFF;
