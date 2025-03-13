@@ -702,7 +702,7 @@ README.md`,
                           ))}
                         </div>
                         <div className="project-link">
-                          <a href={`https://${project.link}`} target="_blank" rel="noopener noreferrer" className="terminal-link">
+                          <a href={`https://${project.link}`} target="_blank" rel="noopener noreferrer">
                             View Project →
                           </a>
                         </div>

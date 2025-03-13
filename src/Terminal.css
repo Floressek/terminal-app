@@ -49,13 +49,29 @@ body {
 }
 
 .terminal-container {
-    width: 900px;
-    height: 600px;
+    width: 90%;
+    max-width: 900px;
+    height: 80vh;
     margin: auto;
     position: relative;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .terminal-container {
+        width: 95%;
+        height: 90vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
 }
 
 .terminal {
@@ -76,7 +92,7 @@ body {
     border-bottom: 1px solid rgba(0, 255, 0, 0.1);
 }
 
-.controls {
+.terminal-controls {
     display: flex;
     gap: 8px;
 }
@@ -98,9 +114,20 @@ body {
     transform: scale(0.9);
 }
 
-.close { background: #ff5f56; }
-.minimize { background: #ffbd2e; }
-.maximize { background: #27c93f; }
+.close { 
+    background: #ff5f56; 
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.minimize { 
+    background: #ffbd2e; 
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.maximize { 
+    background: #27c93f; 
+    border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
 
 .title {
     color: #cccccc;
@@ -517,7 +544,7 @@ body {
     position: absolute;
     width: 8px;
     height: 2px;
-    background: #333;
+    background: rgba(0, 0, 0, 0.4);
     top: 5px;
     left: 2px;
 }
@@ -535,7 +562,7 @@ body {
     position: absolute;
     width: 8px;
     height: 2px;
-    background: #333;
+    background: rgba(0, 0, 0, 0.4);
     top: 5px;
     left: 2px;
 }
@@ -544,13 +571,13 @@ body {
 .maximize:hover::after {
     content: '';
     position: absolute;
-    background: #333;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .maximize:hover::before {
     width: 6px;
     height: 6px;
-    border: 1px solid #333;
+    border: 1px solid rgba(0, 0, 0, 0.4);
     top: 2px;
     left: 2px;
 }
@@ -1435,4 +1462,56 @@ body {
 
 .portfolio-back-button:hover {
   background: rgba(100, 255, 218, 0.1);
+}
+
+/* Responsive adjustments for portfolio content */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card {
+        max-width: 100%;
+    }
+    
+    .portfolio-name {
+        font-size: 1.8rem;
+    }
+    
+    .portfolio-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-content {
+        padding: 10px;
+        font-size: 12px;
+    }
+    
+    .line {
+        font-size: 12px;
+    }
+    
+    #command-input {
+        font-size: 12px;
+    }
+    
+    .project-link a {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
+    .section-title {
+        font-size: 16px;
+    }
+    
+    .portfolio-back-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
 }
