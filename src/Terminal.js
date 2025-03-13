@@ -428,15 +428,23 @@ set showcmd`
               <p>~</p>
               <p>~</p>
               <p>~</p>
+              <p>~</p>
+              <p>~</p>
+              <p>~</p>
+              <p>~</p>
+              <p>~</p>
+              <p>~</p>
             </div>
             <div class="vim-mode">
-              <span style="color: #ff5555; font-weight: bold;">-- INSERT --</span>
+              <span style="color: #ff5555; font-weight: bold; background-color: #2d2d2d; padding: 2px 8px; border-radius: 3px; display: inline-block; white-space: nowrap; border: 1px solid #444444;">-- INSERT --</span>
               <span class="vim-hint">
                 You're now trapped in vim! Try typing :q! to exit
               </span>
             </div>
             <div class="vim-footer">
-              <span>Hint: There's a secret escape command... (try 'cat .vimrc')</span>
+              <span>"untitled" [New File]</span>
+              <span style="color: #e5c07b;">Hint: There's a secret escape command... (try 'cat .vimrc')</span>
+              <span>0,0-1 All</span>
             </div>
           </div>`
         ]);
@@ -789,7 +797,16 @@ set showcmd`
                 <div className="input-line">
                   <span className="prompt-user">
                     {isVimModeActive ? 
-                      <span style={{color: '#ff5555'}}>--VIM--</span> : 
+                      <span style={{
+                        color: '#ff5555', 
+                        fontWeight: 'bold',
+                        display: 'inline-block',
+                        backgroundColor: '#2d2d2d',
+                        padding: '2px 6px',
+                        borderRadius: '3px',
+                        border: '1px solid #444444',
+                        whiteSpace: 'nowrap'
+                      }}>--VIM--</span> : 
                       `szymon@portfolio:${currentDirectory}$`
                     }
                   </span>
@@ -818,26 +835,43 @@ set showcmd`
                     }
                   }, 100);
                 }}>
-                  [Press ESC or click here to return to terminal]
+                  <span className="back-icon">⬅</span> Return to Terminal
                 </div>
                 
                 <div className="portfolio-header">
-                  <div className="portfolio-name">SZYMON FLOREK</div>
-                  <div className="portfolio-title">Computer Science Student & Tech Enthusiast</div>
+                  <div className="portfolio-avatar">
+                    <div className="avatar-placeholder">SF</div>
+                  </div>
+                  <div className="portfolio-intro">
+                    <div className="portfolio-name">SZYMON FLOREK</div>
+                    <div className="portfolio-title">Computer Science Student & Tech Enthusiast</div>
+                    <div className="portfolio-tagline">Building the future, one line of code at a time</div>
+                  </div>
                 </div>
                 
                 <div className="portfolio-about">
-                  <div className="section-title">ABOUT ME</div>
-                  <p>Computer Science student (3rd year) at WAT (Wojskowa Akademia Techniczna), focusing on Data Science and Machine Learning. I'm passionate about solving complex problems through code and exploring new technologies.</p>
-                  <p>Currently exploring the vast world of software development and AI while building practical skills through hands-on projects.</p>
+                  <div className="section-title">
+                    <span className="section-icon">👨‍💻</span>
+                    <span>ABOUT ME</span>
+                  </div>
+                  <div className="about-content">
+                    <p>Computer Science student (3rd year) at WAT (Wojskowa Akademia Techniczna), focusing on Data Science and Machine Learning. I'm passionate about solving complex problems through code and exploring new technologies.</p>
+                    <p>Currently exploring the vast world of software development and AI while building practical skills through hands-on projects.</p>
+                  </div>
                 </div>
                 
                 <div className="portfolio-section">
-                  <div className="section-title">PROJECTS</div>
+                  <div className="section-title">
+                    <span className="section-icon">🚀</span>
+                    <span>PROJECTS</span>
+                  </div>
                   <div className="projects-grid">
                     {projects.map((project, index) => (
                       <div key={index} className="project-card">
-                        <h3>{project.name}</h3>
+                        <div className="project-header">
+                          <h3>{project.name}</h3>
+                          <div className="project-icon">{project.name.charAt(0)}</div>
+                        </div>
                         <p className="project-description">{project.description}</p>
                         <div className="tech-stack">
                           {project.tech.map((tech, i) => (
@@ -846,7 +880,7 @@ set showcmd`
                         </div>
                         <div className="project-link">
                           <a href={`https://${project.link}`} target="_blank" rel="noopener noreferrer">
-                            View Project →
+                            View Project
                           </a>
                         </div>
                       </div>
@@ -855,10 +889,13 @@ set showcmd`
                 </div>
                 
                 <div className="portfolio-section">
-                  <div className="section-title">TECHNICAL SKILLS</div>
+                  <div className="section-title">
+                    <span className="section-icon">🛠️</span>
+                    <span>TECHNICAL SKILLS</span>
+                  </div>
                   <div className="skills-container">
                     <div className="skill-category">
-                      <h4>Programming Languages</h4>
+                      <h4><span className="category-icon">💻</span> Programming Languages</h4>
                       <div className="skills-grid">
                         {skills.languages.map((skill, index) => (
                           <div key={index} className="skill">
@@ -875,7 +912,7 @@ set showcmd`
                     </div>
                     
                     <div className="skill-category">
-                      <h4>Tools & Technologies</h4>
+                      <h4><span className="category-icon">🔧</span> Tools & Technologies</h4>
                       <div className="skills-grid">
                         {skills.tools.map((skill, index) => (
                           <div key={index} className="skill">
@@ -892,7 +929,7 @@ set showcmd`
                     </div>
                     
                     <div className="skill-category">
-                      <h4>Databases</h4>
+                      <h4><span className="category-icon">🗄️</span> Databases</h4>
                       <div className="skills-grid">
                         {skills.databases.map((skill, index) => (
                           <div key={index} className="skill">
@@ -910,7 +947,7 @@ set showcmd`
                   </div>
                   
                   <div className="learning-section">
-                    <h4>Currently Learning</h4>
+                    <h4><span className="category-icon">🌱</span> Currently Learning</h4>
                     <div className="learning-tags">
                       <span className="learning-tag">Machine Learning</span>
                       <span className="learning-tag">Data Science</span>
@@ -922,17 +959,26 @@ set showcmd`
                 </div>
                 
                 <div className="portfolio-section">
-                  <div className="section-title">EDUCATION</div>
+                  <div className="section-title">
+                    <span className="section-icon">🎓</span>
+                    <span>EDUCATION</span>
+                  </div>
                   <div className="education-item">
-                    <h4>Computer Science</h4>
-                    <p>Wojskowa Akademia Techniczna (WAT)</p>
-                    <p>3rd year student</p>
-                    <p>Focus on Data Science and Machine Learning</p>
+                    <div className="education-icon">🏫</div>
+                    <div className="education-details">
+                      <h4>Computer Science</h4>
+                      <p className="education-school">Wojskowa Akademia Techniczna (WAT)</p>
+                      <p className="education-year">3rd year student</p>
+                      <p className="education-focus">Focus on Data Science and Machine Learning</p>
+                    </div>
                   </div>
                 </div>
                 
                 <div className="portfolio-section">
-                  <div className="section-title">INTERESTS</div>
+                  <div className="section-title">
+                    <span className="section-icon">🎯</span>
+                    <span>INTERESTS</span>
+                  </div>
                   <div className="interests-container">
                     <div className="interest-item">
                       <span className="interest-icon">♟️</span>
@@ -958,7 +1004,10 @@ set showcmd`
                 </div>
                 
                 <div className="portfolio-section">
-                  <div className="section-title">CONTACT</div>
+                  <div className="section-title">
+                    <span className="section-icon">📬</span>
+                    <span>CONTACT</span>
+                  </div>
                   <div className="contact-container">
                     <div className="contact-item">
                       <span className="contact-icon">📧</span>
@@ -976,8 +1025,14 @@ set showcmd`
                 </div>
                 
                 <div className="portfolio-footer">
-                  <p>This portfolio is built with React and styled to resemble a terminal interface.</p>
-                  <p>Type 'help' in the terminal to see available commands.</p>
+                  <div className="footer-content">
+                    <p>This portfolio is built with React and styled to resemble a terminal interface.</p>
+                    <p>Type 'help' in the terminal to see available commands.</p>
+                  </div>
+                  <div className="footer-signature">
+                    <span className="terminal-prompt">szymon@portfolio:~$ </span>
+                    <span className="blink">_</span>
+                  </div>
                 </div>
               </div>
             )}
