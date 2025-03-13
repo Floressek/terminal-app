@@ -273,7 +273,30 @@ README.md`,
             </div>`,
             `<div style="color: #00ff00; margin-top: 20px; text-shadow: 0 0 5px #00ff00;">
               <p>Choose your pill:</p>
-              <p><span class="terminal-link red-pill" onclick="document.getElementById('command-input').value='red pill'; document.getElementById('command-input').dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}))">Red Pill</span> <span class="terminal-link blue-pill" onclick="document.getElementById('command-input').value='blue pill'; document.getElementById('command-input').dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}))">Blue Pill</span></p>
+              <div style="display: flex; justify-content: center; gap: 20px; margin: 20px 0;">
+                <button 
+                  style="background-color: #ff0000; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);"
+                  onclick="
+                    (function() {
+                      const event = new CustomEvent('matrix-red-pill');
+                      document.dispatchEvent(event);
+                    })()
+                  "
+                >
+                  RED PILL
+                </button>
+                <button 
+                  style="background-color: #0000ff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; box-shadow: 0 0 10px rgba(0, 0, 255, 0.7);"
+                  onclick="
+                    (function() {
+                      const event = new CustomEvent('matrix-blue-pill');
+                      document.dispatchEvent(event);
+                    })()
+                  "
+                >
+                  BLUE PILL
+                </button>
+              </div>
               <p style="margin-top: 10px;">Red Pill - See how deep the rabbit hole goes</p>
               <p>Blue Pill - Return to normal terminal</p>
             </div>`
@@ -363,6 +386,11 @@ README.md`,
     },
     portfolio: () => {
       setIsPortfolioVisible(true);
+      setTimeout(() => {
+        if (outputRef.current) {
+          outputRef.current.scrollTop = 0;
+        }
+      }, 100);
       return `<div style="text-align: center; padding: 20px; color: #64ffda;">
         <h2 style="margin-bottom: 15px;">Opening Professional Portfolio View</h2>
         <p style="margin-bottom: 10px;">Switching to a more visual representation of my portfolio...</p>
@@ -372,6 +400,65 @@ README.md`,
           <span class="loading-dot">.</span>
         </div>
       </div>`;
+    },
+    'red pill': () => {
+      setTerminalTheme('hacker');
+      setOutput(prev => [
+        ...prev,
+        `<div style="color: #00ff00; text-shadow: 0 0 5px #00ff00;">
+          <p style="font-size: 24px; font-weight: bold; margin-bottom: 15px; text-align: center; text-transform: uppercase; letter-spacing: 2px;">You take the red pill...</p>
+          
+          <div style="border: 1px solid #00ff00; padding: 15px; margin: 20px 0; background-color: rgba(0, 255, 0, 0.1); border-radius: 5px;">
+            <p style="font-size: 16px; margin-bottom: 10px; text-align: center;">The Matrix has been revealed to you.</p>
+            <p style="font-size: 16px; margin-bottom: 10px; text-align: center;">Welcome to the real world.</p>
+          </div>
+          
+          <div style="margin: 25px 0; overflow: hidden; border: 1px solid #00ff00; border-radius: 5px; padding: 10px; background-color: rgba(0, 0, 0, 0.7);">
+            <pre style="font-size: 12px; line-height: 1.2; overflow: hidden; animation: matrixRain 10s linear infinite, matrixGlow 2s ease-in-out infinite; text-align: center;">
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+            ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓
+            ▓ 01001101 01000001 01010100 01010010 01001001 01011000 ▓
+            ▓ 01010111 01000001 01001011 01000101 00100000 01010101 01010000 ▓
+            ▓ 01010100 01001000 01000101 00100000 01001101 01000001 01010100 01010010 01001001 01011000 00100000 01001000 01000001 01010011 00100000 01011001 01001111 01010101 ▓
+            ▓ 01000110 01001111 01001100 01001100 01001111 01010111 00100000 01010100 01001000 01000101 00100000 01010111 01001000 01001001 01010100 01000101 00100000 01010010 01000001 01000010 01000010 01001001 01010100 ▓
+            ▓ 01001011 01001110 01001111 01000011 01001011 00101100 00100000 01001011 01001110 01001111 01000011 01001011 00101100 00100000 01001110 01000101 01001111 ▓
+            ▓ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ▓
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+            </pre>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px; padding: 15px; border: 1px dashed #00ff00; border-radius: 5px; background-color: rgba(0, 255, 0, 0.05);">
+            <p style="margin-bottom: 15px; font-size: 16px;">You are now in <span style="color: #ff0000; text-shadow: 0 0 5px #ff0000;">The Matrix</span>. Reality is different here.</p>
+            <p>Type <span class="command-highlight" style="font-size: 18px;">help</span> to see available commands in the Matrix.</p>
+          </div>
+        </div>`
+      ]);
+    },
+    'blue pill': () => {
+      setTerminalTheme('default');
+      setOutput(prev => [
+        ...prev,
+        `<div style="color: #3498db; text-shadow: 0 0 5px #3498db;">
+          <p style="font-size: 24px; font-weight: bold; margin-bottom: 15px; text-align: center; text-transform: uppercase; letter-spacing: 2px;">You take the blue pill...</p>
+          
+          <div style="border: 1px solid #3498db; padding: 15px; margin: 20px 0; background-color: rgba(52, 152, 219, 0.1); border-radius: 5px;">
+            <p style="font-size: 16px; margin-bottom: 10px; text-align: center;">The story ends here.</p>
+            <p style="font-size: 16px; margin-bottom: 10px; text-align: center;">You wake up in your bed and believe whatever you want to believe.</p>
+          </div>
+          
+          <div style="margin: 25px 0; overflow: hidden; border: 1px solid #3498db; border-radius: 5px; padding: 10px; background-color: rgba(0, 0, 0, 0.7); text-align: center;">
+            <div style="font-size: 50px; margin: 20px 0; animation: fadeIn 3s ease-in-out;">
+              (-.-)Zzz...
+            </div>
+            <p style="font-size: 18px; margin: 15px 0; opacity: 0.8;">Returning to the comfort of ignorance...</p>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px; padding: 15px; border: 1px dashed #3498db; border-radius: 5px; background-color: rgba(52, 152, 219, 0.05);">
+            <p style="margin-bottom: 15px; font-size: 16px;">You chose <span style="color: #3498db; text-shadow: 0 0 5px #3498db;">blissful ignorance</span>. The Matrix remains hidden.</p>
+            <p>Type <span class="command-highlight" style="font-size: 18px;">help</span> to see available commands.</p>
+          </div>
+        </div>`
+      ]);
     }
   };
 
@@ -392,6 +479,78 @@ README.md`,
       outputRef.current.scrollTop = outputRef.current.scrollHeight;
     }
   }, [output]);
+
+  // Add event listeners for matrix pill buttons
+  useEffect(() => {
+    const handleRedPill = () => {
+      setTerminalTheme('hacker');
+      setOutput(prev => [
+        ...prev,
+        `<div style="color: #00ff00; text-shadow: 0 0 5px #00ff00;">
+          <p style="font-size: 24px; font-weight: bold; margin-bottom: 15px; text-align: center; text-transform: uppercase; letter-spacing: 2px;">You take the red pill...</p>
+          
+          <div style="border: 1px solid #00ff00; padding: 15px; margin: 20px 0; background-color: rgba(0, 255, 0, 0.1); border-radius: 5px;">
+            <p style="font-size: 16px; margin-bottom: 10px; text-align: center;">The Matrix has been revealed to you.</p>
+            <p style="font-size: 16px; margin-bottom: 10px; text-align: center;">Welcome to the real world.</p>
+          </div>
+          
+          <div style="margin: 25px 0; overflow: hidden; border: 1px solid #00ff00; border-radius: 5px; padding: 10px; background-color: rgba(0, 0, 0, 0.7);">
+            <pre style="font-size: 12px; line-height: 1.2; overflow: hidden; animation: matrixRain 10s linear infinite, matrixGlow 2s ease-in-out infinite; text-align: center;">
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+            ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓
+            ▓ 01001101 01000001 01010100 01010010 01001001 01011000 ▓
+            ▓ 01010111 01000001 01001011 01000101 00100000 01010101 01010000 ▓
+            ▓ 01010100 01001000 01000101 00100000 01001101 01000001 01010100 01010010 01001001 01011000 00100000 01001000 01000001 01010011 00100000 01011001 01001111 01010101 ▓
+            ▓ 01000110 01001111 01001100 01001100 01001111 01010111 00100000 01010100 01001000 01000101 00100000 01010111 01001000 01001001 01010100 01000101 00100000 01010010 01000001 01000010 01000010 01001001 01010100 ▓
+            ▓ 01001011 01001110 01001111 01000011 01001011 00101100 00100000 01001011 01001110 01001111 01000011 01001011 00101100 00100000 01001110 01000101 01001111 ▓
+            ▓ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ░ ▒ ▓ ░ ▒ ░ ▓ ▒ ▓
+            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+            </pre>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px; padding: 15px; border: 1px dashed #00ff00; border-radius: 5px; background-color: rgba(0, 255, 0, 0.05);">
+            <p style="margin-bottom: 15px; font-size: 16px;">You are now in <span style="color: #ff0000; text-shadow: 0 0 5px #ff0000;">The Matrix</span>. Reality is different here.</p>
+            <p>Type <span class="command-highlight" style="font-size: 18px;">help</span> to see available commands in the Matrix.</p>
+          </div>
+        </div>`
+      ]);
+    };
+
+    const handleBluePill = () => {
+      setTerminalTheme('default');
+      setOutput(prev => [
+        ...prev,
+        `<div style="color: #3498db; text-shadow: 0 0 5px #3498db;">
+          <p style="font-size: 24px; font-weight: bold; margin-bottom: 15px; text-align: center; text-transform: uppercase; letter-spacing: 2px;">You take the blue pill...</p>
+          
+          <div style="border: 1px solid #3498db; padding: 15px; margin: 20px 0; background-color: rgba(52, 152, 219, 0.1); border-radius: 5px;">
+            <p style="font-size: 16px; margin-bottom: 10px; text-align: center;">The story ends here.</p>
+            <p style="font-size: 16px; margin-bottom: 10px; text-align: center;">You wake up in your bed and believe whatever you want to believe.</p>
+          </div>
+          
+          <div style="margin: 25px 0; overflow: hidden; border: 1px solid #3498db; border-radius: 5px; padding: 10px; background-color: rgba(0, 0, 0, 0.7); text-align: center;">
+            <div style="font-size: 50px; margin: 20px 0; animation: fadeIn 3s ease-in-out;">
+              (-.-)Zzz...
+            </div>
+            <p style="font-size: 18px; margin: 15px 0; opacity: 0.8;">Returning to the comfort of ignorance...</p>
+          </div>
+          
+          <div style="text-align: center; margin-top: 25px; padding: 15px; border: 1px dashed #3498db; border-radius: 5px; background-color: rgba(52, 152, 219, 0.05);">
+            <p style="margin-bottom: 15px; font-size: 16px;">You chose <span style="color: #3498db; text-shadow: 0 0 5px #3498db;">blissful ignorance</span>. The Matrix remains hidden.</p>
+            <p>Type <span class="command-highlight" style="font-size: 18px;">help</span> to see available commands.</p>
+          </div>
+        </div>`
+      ]);
+    };
+
+    document.addEventListener('matrix-red-pill', handleRedPill);
+    document.addEventListener('matrix-blue-pill', handleBluePill);
+
+    return () => {
+      document.removeEventListener('matrix-red-pill', handleRedPill);
+      document.removeEventListener('matrix-blue-pill', handleBluePill);
+    };
+  }, []);
 
   const handleCommand = (command) => {
     const trimmedCommand = command.trim();
@@ -430,6 +589,14 @@ README.md`,
       }
     } else if (e.key === 'Escape' && isPortfolioVisible) {
       setIsPortfolioVisible(false);
+      setOutput(prev => {
+        return prev.filter(line => !line.includes('Opening Professional Portfolio View'));
+      });
+      setTimeout(() => {
+        if (outputRef.current) {
+          outputRef.current.scrollTop = 0;
+        }
+      }, 100);
     }
   };
 
@@ -460,9 +627,9 @@ README.md`,
         <div className="terminal">
           <div className="terminal-header">
             <div className="terminal-controls">
-              <span className="control close" onClick={() => setIsTerminalVisible(false)}></span>
-              <span className="control minimize" onClick={() => setIsTerminalMinimized(!isTerminalMinimized)}></span>
-              <span className="control maximize" onClick={() => setIsTerminalMaximized(!isTerminalMaximized)}></span>
+              <span className="control close" onClick={handleCloseTerminal}></span>
+              <span className="control minimize" onClick={handleMinimizeTerminal}></span>
+              <span className="control maximize" onClick={handleMaximizeTerminal}></span>
             </div>
             <div className="terminal-title">
               <span>szymon@portfolio</span>
@@ -497,7 +664,17 @@ README.md`,
               </>
             ) : (
               <div id="portfolio-content">
-                <div className="portfolio-back-button" onClick={() => setIsPortfolioVisible(false)}>
+                <div className="portfolio-back-button" onClick={() => {
+                  setIsPortfolioVisible(false);
+                  setOutput(prev => {
+                    return prev.filter(line => !line.includes('Opening Professional Portfolio View'));
+                  });
+                  setTimeout(() => {
+                    if (outputRef.current) {
+                      outputRef.current.scrollTop = 0;
+                    }
+                  }, 100);
+                }}>
                   [Press ESC or click here to return to terminal]
                 </div>
                 
