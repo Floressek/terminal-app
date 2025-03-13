@@ -554,6 +554,8 @@ set showcmd`
           <li>• <span style="color: #ff9900;">konami</span> - Enter the Konami code</li>
           <li>• <span style="color: #ff9900;">ls -la</span> - Show hidden files</li>
           <li>• <span style="color: #ff9900;">cat .vimrc</span> - View vim configuration</li>
+          <li>• <span style="color: #ff9900;">hack</span> - Simulate hacking into a system</li>
+          <li>• <span style="color: #ff9900;">coffee</span> - Take a coffee break</li>
         </ul>
         <p style="margin-top: 15px; text-align: center; font-style: italic;">Keep exploring to find more secrets!</p>
       </div>`;
@@ -574,6 +576,76 @@ set showcmd`
       }, 500);
       
       return 'Entering Konami code...';
+    },
+    'hack': () => {
+      const targets = [
+        'NASA', 'Pentagon', 'FBI', 'CIA', 'NSA', 'MI6', 
+        'Kremlin', 'Area 51', 'Mainframe', 'GitHub', 
+        'StackOverflow', 'Microsoft', 'Google', 'Facebook'
+      ];
+      
+      const randomTarget = targets[Math.floor(Math.random() * targets.length)];
+      
+      setTimeout(() => {
+        setOutput(prev => [
+          ...prev,
+          `<div style="color: #00ff00; font-family: monospace;">Initializing hack sequence on ${randomTarget} servers...</div>`
+        ]);
+        
+        setTimeout(() => {
+          setOutput(prev => [
+            ...prev,
+            `<div style="color: #00ff00; font-family: monospace;">Bypassing firewall...</div>`
+          ]);
+          
+          setTimeout(() => {
+            setOutput(prev => [
+              ...prev,
+              `<div style="color: #00ff00; font-family: monospace;">Cracking encryption...</div>`
+            ]);
+            
+            setTimeout(() => {
+              setOutput(prev => [
+                ...prev,
+                `<div style="color: #00ff00; font-family: monospace;">Accessing mainframe...</div>`
+              ]);
+              
+              setTimeout(() => {
+                setOutput(prev => [
+                  ...prev,
+                  `<div style="color: #00ff00; font-family: monospace;">Downloading classified data...</div>`
+                ]);
+                
+                setTimeout(() => {
+                  setOutput(prev => [
+                    ...prev,
+                    `<div style="color: #ff0000; font-weight: bold; font-size: 18px; text-align: center; margin: 10px 0;">⚠️ INTRUSION DETECTED ⚠️</div>`,
+                    `<div style="color: #ff0000; font-family: monospace; text-align: center;">Connection terminated by ${randomTarget} security systems!</div>`,
+                    `<div style="color: #ffffff; font-family: monospace; text-align: center; margin-top: 10px;">Just kidding! This is just a harmless easter egg. 😉</div>`
+                  ]);
+                }, 2000);
+              }, 1500);
+            }, 1500);
+          }, 1500);
+        }, 1500);
+      }, 500);
+      
+      return `<div style="color: #00ff00; font-family: monospace; text-align: center; font-weight: bold;">INITIATING HACK SEQUENCE</div>`;
+    },
+    'coffee': () => {
+      return `<div style="color: #8B4513; font-family: monospace; text-align: center; padding: 15px;">
+        <pre>
+         ( (
+          ) )
+       .........
+       |       |]
+       \\       /
+        \`-----'
+        </pre>
+        <p style="margin-top: 15px; font-size: 16px;">☕ Coffee break! ☕</p>
+        <p style="color: #A0A0A0; font-size: 14px;">Every developer's best friend.</p>
+        <p style="color: #A0A0A0; font-size: 12px; margin-top: 10px;">Type <span style="color: #00ff00;">easter-eggs</span> to discover more hidden commands.</p>
+      </div>`;
     }
   };
 
