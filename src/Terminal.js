@@ -16,6 +16,7 @@ const Terminal = () => {
   const [isTerminalMinimized, setIsTerminalMinimized] = useState(false);
   const [isTerminalMaximized, setIsTerminalMaximized] = useState(false);
   const [terminalTheme, setTerminalTheme] = useState('default'); // 'default', 'hacker', 'retro', 'synthwave'
+  const [isVimModeActive, setIsVimModeActive] = useState(false);
   const inputRef = useRef(null);
   const outputRef = useRef(null);
 
@@ -88,6 +89,8 @@ const Terminal = () => {
         ['portfolio', 'View my professional portfolio'],
         ['matrix', 'Enter the Matrix'],
         ['quote', 'Display a random programming quote'],
+        ['vim', 'Open the vim editor (if you dare)'],
+        ['neofetch', 'Display system information'],
         ['clear', 'Clear the terminal'],
         ['help', 'Display this help message']
       ];
@@ -169,6 +172,20 @@ contact.txt
 interests.txt
 education.txt
 README.md`,
+    'ls -la': () => `total 16
+drwxr-xr-x  2 szymon users 4096 Jan 1 00:00 .
+drwxr-xr-x 10 szymon users 4096 Jan 1 00:00 ..
+-rw-r--r--  1 szymon users  220 Jan 1 00:00 .bash_logout
+-rw-r--r--  1 szymon users 3526 Jan 1 00:00 .bashrc
+-rw-r--r--  1 szymon users  807 Jan 1 00:00 .profile
+-rw-r--r--  1 szymon users  120 Jan 1 00:00 .vimrc
+drwxr-xr-x  2 szymon users 4096 Jan 1 00:00 projects
+-rw-r--r--  1 szymon users 1240 Jan 1 00:00 skills.txt
+-rw-r--r--  1 szymon users  982 Jan 1 00:00 about.md
+-rw-r--r--  1 szymon users  450 Jan 1 00:00 contact.txt
+-rw-r--r--  1 szymon users  120 Jan 1 00:00 interests.txt
+-rw-r--r--  1 szymon users  180 Jan 1 00:00 education.txt
+-rw-r--r--  1 szymon users  982 Jan 1 00:00 README.md`,
     cat: (args) => {
       const files = {
         'skills.txt': commands.skills(),
@@ -176,7 +193,15 @@ README.md`,
         'README.md': commands.about(),
         'about.md': commands.about(),
         'interests.txt': commands.interests(),
-        'education.txt': commands.education()
+        'education.txt': commands.education(),
+        '.vimrc': `" Vim configuration file
+" To exit vim, type the secret command: please-let-me-out
+" Normal vim commands won't work here!
+" This is a custom vim trap for the portfolio terminal.
+set noesckeys
+set nocompatible
+set showmode
+set showcmd`
       };
       return files[args] || `cat: ${args}: No such file`;
     },
@@ -384,6 +409,55 @@ README.md`,
         <p style="text-align: right; color: #00ffff;">— ${randomQuote.author}</p>
       </div>`;
     },
+    vim: () => {
+      // Set vim mode active
+      setIsVimModeActive(true);
+      
+      setTimeout(() => {
+        setOutput(prev => [
+          ...prev,
+          `<div class="vim-editor">
+            <div class="vim-header">
+              <span>"untitled" [New File]</span>
+              <span>0,0-1 All</span>
+            </div>
+            <div class="vim-content">
+              <p>~</p>
+              <p>~</p>
+              <p>~</p>
+              <p>~</p>
+              <p>~</p>
+              <p>~</p>
+            </div>
+            <div class="vim-mode">
+              <span style="color: #ff5555; font-weight: bold;">-- INSERT --</span>
+              <span class="vim-hint">
+                You're now trapped in vim! Try typing :q! to exit
+              </span>
+            </div>
+            <div class="vim-footer">
+              <span>Hint: There's a secret escape command... (try 'cat .vimrc')</span>
+            </div>
+          </div>`
+        ]);
+      }, 500);
+      
+      return 'Opening vim...';
+    },
+    ':q': () => `<span style="color: red;">Not an editor command: q</span>`,
+    ':q!': () => `<span style="color: red;">E37: No write since last change (add ! to override)</span>`,
+    ':wq': () => `<span style="color: red;">E212: Can't open file for writing: Permission denied</span>`,
+    ':wq!': () => `<span style="color: red;">E212: Can't open file for writing: Permission denied</span>`,
+    'ZZ': () => `<span style="color: red;">E212: Can't open file for writing: Permission denied</span>`,
+    'ZQ': () => `<span style="color: red;">Not an editor command: ZQ</span>`,
+    'exit': () => `<span style="color: red;">Not an editor command: exit</span>`,
+    'quit': () => `<span style="color: red;">Not an editor command: quit</span>`,
+    'escape': () => `<span style="color: red;">Not an editor command: escape</span>`,
+    'please-let-me-out': () => {
+      // Exit vim mode
+      setIsVimModeActive(false);
+      return `<span style="color: green;">Congratulations! You found the secret escape command! Exiting vim...</span>`;
+    },
     portfolio: () => {
       setIsPortfolioVisible(true);
       setTimeout(() => {
@@ -459,6 +533,118 @@ README.md`,
           </div>
         </div>`
       ]);
+    },
+    'easter-eggs': () => {
+      return `<div style="color: #ffff00; padding: 10px; border: 1px dashed #ffff00; margin: 10px 0; background-color: rgba(255, 255, 0, 0.1);">
+        <h3 style="text-align: center; margin-bottom: 15px;">🥚 Hidden Easter Eggs 🥚</h3>
+        <p>You've discovered the secret command! Here are some hidden features:</p>
+        <ul style="list-style-type: none; padding-left: 20px; margin-top: 10px;">
+          <li>• <span style="color: #ff9900;">sudo rm -rf /</span> - Try to delete the system (don't worry, it's safe)</li>
+          <li>• <span style="color: #ff9900;">please-let-me-out</span> - Secret escape from vim</li>
+          <li>• <span style="color: #ff9900;">theme [name]</span> - Change terminal theme (default, hacker, retro, synthwave)</li>
+          <li>• <span style="color: #ff9900;">red pill / blue pill</span> - Direct Matrix commands</li>
+          <li>• <span style="color: #ff9900;">konami</span> - Enter the Konami code</li>
+          <li>• <span style="color: #ff9900;">ls -la</span> - Show hidden files</li>
+          <li>• <span style="color: #ff9900;">cat .vimrc</span> - View vim configuration</li>
+        </ul>
+        <p style="margin-top: 15px; text-align: center; font-style: italic;">Keep exploring to find more secrets!</p>
+      </div>`;
+    },
+    'konami': () => {
+      setTimeout(() => {
+        setOutput(prev => [
+          ...prev,
+          `<div style="text-align: center; padding: 20px; color: #ffff00;">
+            <h2 style="margin-bottom: 15px;">🎮 KONAMI CODE ACTIVATED! 🎮</h2>
+            <p style="margin-bottom: 10px;">↑ ↑ ↓ ↓ ← → ← → B A</p>
+            <div style="font-size: 50px; margin: 20px 0;">
+              🏆
+            </div>
+            <p>30 LIVES ADDED!</p>
+          </div>`
+        ]);
+      }, 500);
+      
+      return 'Entering Konami code...';
+    }
+  };
+
+  const handleCommand = (command) => {
+    const trimmedCommand = command.trim();
+    if (!trimmedCommand) return;
+
+    // If in vim mode, handle vim commands
+    if (isVimModeActive) {
+      if (trimmedCommand === 'please-let-me-out') {
+        setIsVimModeActive(false);
+        setOutput(prev => [
+          ...prev,
+          `<span style="color: green;">Congratulations! You found the secret escape command! Exiting vim...</span>`
+        ]);
+      } else if (commands[trimmedCommand]) {
+        setOutput(prev => [
+          ...prev,
+          commands[trimmedCommand]()
+        ]);
+      } else {
+        setOutput(prev => [
+          ...prev,
+          `<span style="color: red;">Not an editor command: ${trimmedCommand}</span>`
+        ]);
+      }
+    } else {
+      // Normal command handling
+      const [cmd, ...args] = trimmedCommand.split(' ');
+      const fullCommand = trimmedCommand;
+      
+      // Handle special case for 'ls -la'
+      let result;
+      if (fullCommand === 'ls -la' && commands['ls -la']) {
+        result = commands['ls -la']();
+      } else {
+        result = commands[cmd] ? commands[cmd](args.join(' ')) : `Command not found: ${cmd}`;
+      }
+      
+      setOutput(prev => [
+        ...prev, 
+        `<span class="prompt-user">szymon@portfolio:${currentDirectory}$</span><span style="color: rgb(255, 255, 255)"> ${trimmedCommand}</span>`,
+        result
+      ]);
+    }
+    
+    setCommandHistory(prev => [...prev, trimmedCommand]);
+    setHistoryIndex(commandHistory.length + 1);
+    setCurrentCommand('');
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleCommand(currentCommand);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (historyIndex > 0) {
+        setHistoryIndex(prev => prev - 1);
+        setCurrentCommand(commandHistory[historyIndex - 1]);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIndex < commandHistory.length - 1) {
+        setHistoryIndex(prev => prev + 1);
+        setCurrentCommand(commandHistory[historyIndex + 1]);
+      } else {
+        setHistoryIndex(commandHistory.length);
+        setCurrentCommand('');
+      }
+    } else if (e.key === 'Escape' && isPortfolioVisible) {
+      setIsPortfolioVisible(false);
+      setOutput(prev => {
+        return prev.filter(line => !line.includes('Opening Professional Portfolio View'));
+      });
+      setTimeout(() => {
+        if (outputRef.current) {
+          outputRef.current.scrollTop = 0;
+        }
+      }, 100);
     }
   };
 
@@ -552,54 +738,6 @@ README.md`,
     };
   }, []);
 
-  const handleCommand = (command) => {
-    const trimmedCommand = command.trim();
-    if (!trimmedCommand) return;
-
-    const [cmd, ...args] = trimmedCommand.split(' ');
-    const result = commands[cmd] ? commands[cmd](args.join(' ')) : `Command not found: ${cmd}`;
-    
-    setOutput(prev => [
-      ...prev, 
-      `<span class="prompt-user">szymon@portfolio:${currentDirectory}$</span><span style="color: rgb(255, 255, 255)"> ${trimmedCommand}</span>`,
-      result
-    ]);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleCommand(currentCommand);
-      setCommandHistory(prev => [...prev, currentCommand]);
-      setHistoryIndex(commandHistory.length + 1);
-      setCurrentCommand('');
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (historyIndex > 0) {
-        setHistoryIndex(prev => prev - 1);
-        setCurrentCommand(commandHistory[historyIndex - 1]);
-      }
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      if (historyIndex < commandHistory.length - 1) {
-        setHistoryIndex(prev => prev + 1);
-        setCurrentCommand(commandHistory[historyIndex + 1]);
-      } else {
-        setHistoryIndex(commandHistory.length);
-        setCurrentCommand('');
-      }
-    } else if (e.key === 'Escape' && isPortfolioVisible) {
-      setIsPortfolioVisible(false);
-      setOutput(prev => {
-        return prev.filter(line => !line.includes('Opening Professional Portfolio View'));
-      });
-      setTimeout(() => {
-        if (outputRef.current) {
-          outputRef.current.scrollTop = 0;
-        }
-      }, 100);
-    }
-  };
-
   const handleCloseTerminal = () => {
     setIsTerminalVisible(false);
     setTimeout(() => {
@@ -633,7 +771,7 @@ README.md`,
             </div>
             <div className="terminal-title">
               <span>szymon@portfolio</span>
-              <span className="status-indicator">●</span>
+              <span className="status-indicator"></span>
             </div>
           </div>
           <div className={`terminal-content ${isDeleting ? 'deleting' : ''}`} ref={outputRef}>
@@ -649,7 +787,12 @@ README.md`,
                   ))}
                 </div>
                 <div className="input-line">
-                  <span className="prompt-user">szymon@portfolio:{currentDirectory}$</span>
+                  <span className="prompt-user">
+                    {isVimModeActive ? 
+                      <span style={{color: '#ff5555'}}>--VIM--</span> : 
+                      `szymon@portfolio:${currentDirectory}$`
+                    }
+                  </span>
                   <input
                     id="command-input"
                     ref={inputRef}
@@ -819,15 +962,15 @@ README.md`,
                   <div className="contact-container">
                     <div className="contact-item">
                       <span className="contact-icon">📧</span>
-                      <a href="mailto:szymon.florek@student.wat.edu.pl" className="terminal-link">szymon.florek@student.wat.edu.pl</a>
+                      <a href="mailto:szymon.florek@student.wat.edu.pl">szymon.florek@student.wat.edu.pl</a>
                     </div>
                     <div className="contact-item">
                       <span className="contact-icon">🌐</span>
-                      <a href="https://github.com/Floressek" target="_blank" rel="noopener noreferrer" className="terminal-link">github.com/Floressek</a>
+                      <a href="https://github.com/Floressek" target="_blank" rel="noopener noreferrer">github.com/Floressek</a>
                     </div>
                     <div className="contact-item">
                       <span className="contact-icon">💼</span>
-                      <a href="https://linkedin.com/in/szymon-florek-33a968296" target="_blank" rel="noopener noreferrer" className="terminal-link">linkedin.com/in/szymon-florek-33a968296</a>
+                      <a href="https://linkedin.com/in/szymon-florek-33a968296" target="_blank" rel="noopener noreferrer">linkedin.com/in/szymon-florek-33a968296</a>
                     </div>
                   </div>
                 </div>
@@ -845,4 +988,4 @@ README.md`,
   );
 };
 
-export default Terminal; 
+export default Terminal;

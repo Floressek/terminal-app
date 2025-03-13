@@ -129,11 +129,23 @@ body {
     border: 0.5px solid rgba(0, 0, 0, 0.2);
 }
 
-.title {
+.terminal-title {
     color: #cccccc;
     margin-left: 16px;
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #27c93f;
+    margin-left: 5px;
 }
 
 .terminal-content {
@@ -432,43 +444,38 @@ body {
 .project-link {
     margin-top: 15px;
     text-align: center;
-    padding-left: 0;
+    position: relative;
+    z-index: 5;
 }
 
-.project-link a {
-    display: inline-block;
-    background-color: #00ff00;
-    color: #000000;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    letter-spacing: 1px;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-}
-
-.project-link a:hover {
-    background-color: #ffffff;
-    color: #000000;
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 1);
-}
-
-/* Override any terminal-link styling for project links */
+.project-link a,
 .project-link a.terminal-link,
-.project-link a.terminal-link:hover {
-    color: #000000;
-    text-shadow: none;
-    border-bottom: none;
-    background-color: #00ff00;
+#portfolio-content .project-link a,
+#portfolio-content .project-link a.terminal-link {
+    display: inline-block;
+    background-color: #00ff00 !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    padding: 8px 16px !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid #00ff00 !important;
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.2) !important;
+    border-bottom: 2px solid #00ff00 !important;
+    font-family: 'Courier New', monospace !important;
 }
 
-.project-link a.terminal-link:hover {
-    background-color: #ffffff;
+.project-link a:hover,
+.project-link a.terminal-link:hover,
+#portfolio-content .project-link a:hover,
+#portfolio-content .project-link a.terminal-link:hover {
+    background-color: #000 !important;
+    color: #00ff00 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 10px rgba(0, 255, 0, 0.3) !important;
+    text-decoration: none !important;
+    border-bottom: 2px solid #00ff00 !important;
 }
 
 /* Fix for links in terminal output */
@@ -1527,4 +1534,143 @@ body {
         font-size: 12px;
         padding: 6px 12px;
     }
+}
+
+/* Vim Editor Styling */
+.vim-editor {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    font-family: 'Courier New', monospace;
+    border: 1px solid #3e3e3e;
+    border-radius: 4px;
+    width: 100%;
+    margin: 14px 0;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    max-height: 300px;
+}
+
+.vim-header {
+    background-color: #333333;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #444444;
+    font-size: 0.9em;
+}
+
+.vim-content {
+    padding: 5px 10px;
+    min-height: 120px;
+    max-height: 180px;
+    line-height: 1.3;
+}
+
+.vim-content p {
+    margin: 0;
+    padding: 0;
+    color: #666666;
+}
+
+.vim-mode {
+    background-color: #333333;
+    padding: 5px 10px;
+    border-top: 1px solid #444444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vim-hint {
+    font-size: 0.85em;
+    color: #98c379;
+    margin-left: 20px;
+    text-align: right;
+    flex: 1;
+}
+
+.vim-footer {
+    background-color: #333333;
+    padding: 5px 10px;
+    border-top: 1px solid #444444;
+    font-size: 0.9em;
+    color: #d4d4d4;
+    text-align: center;
+}
+
+.vim-footer span {
+    color: #e5c07b;
+    font-style: italic;
+}
+
+/* Vim prompt styling - more specific */
+.prompt-user span[style*="color: #ff5555"] {
+    display: inline-block;
+    background-color: #333333;
+    color: #ff5555 !important;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold !important;
+    font-size: 0.9em;
+    margin-right: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    min-width: 60px;
+}
+
+/* Fix for terminal links in projects */
+#terminal-output a.terminal-link {
+    color: #00aaff;
+    text-decoration: underline;
+    border-bottom: none;
+}
+
+#terminal-output a.terminal-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Ensure project links in portfolio have ONLY green styling */
+#portfolio-content .project-link a {
+    background-color: #00ff00 !important;
+    color: #000 !important;
+    border-color: #00ff00 !important;
+    text-decoration: none !important;
+    border-bottom: 2px solid #00ff00 !important;
+}
+
+#portfolio-content .project-link a:hover {
+    background-color: #000 !important;
+    color: #00ff00 !important;
+    border-color: #00ff00 !important;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .vim-editor {
+    font-size: 0.9em;
+  }
+  
+  .vim-content {
+    min-height: 120px;
+  }
+  
+  .vim-hint {
+    font-size: 0.8em;
+  }
+}
+
+/* Contact links in portfolio */
+.contact-container a {
+  color: #00ff00;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 1px dashed #00ff00;
+  padding-bottom: 2px;
+}
+
+.contact-container a:hover {
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
 }
