@@ -114,18 +114,18 @@ body {
     transform: scale(0.9);
 }
 
-.close { 
-    background: #ff5f56; 
+.close {
+    background: #ff5f56;
     border: 0.5px solid rgba(0, 0, 0, 0.2);
 }
 
-.minimize { 
-    background: #ffbd2e; 
+.minimize {
+    background: #ffbd2e;
     border: 0.5px solid rgba(0, 0, 0, 0.2);
 }
 
-.maximize { 
-    background: #27c93f; 
+.maximize {
+    background: #27c93f;
     border: 0.5px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -542,10 +542,10 @@ body {
     right: 0;
     bottom: 0;
     background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.2) 50%,
-        rgba(255, 255, 255, 0) 100%
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0) 100%
     );
     animation: shimmer 2s infinite;
 }
@@ -738,33 +738,33 @@ body {
     .projects-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .skills-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-container {
         grid-template-columns: 1fr;
     }
-    
+
     .portfolio-header {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .portfolio-avatar {
         margin-right: 0;
         margin-bottom: 20px;
     }
-    
+
     .portfolio-name {
         font-size: 28px;
     }
-    
+
     .portfolio-title {
         font-size: 16px;
     }
-    
+
     .section-title {
         font-size: 20px;
     }
@@ -775,25 +775,25 @@ body {
         font-size: 12px;
         padding: 6px 10px;
     }
-    
+
     .avatar-placeholder {
         width: 80px;
         height: 80px;
         font-size: 28px;
     }
-    
+
     .portfolio-name {
         font-size: 24px;
     }
-    
+
     .section-title {
         font-size: 18px;
     }
-    
+
     .project-card h3 {
         font-size: 18px;
     }
-    
+
     .interests-container {
         justify-content: center;
     }
@@ -801,8 +801,12 @@ body {
 
 /* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideUp {
@@ -817,13 +821,21 @@ body {
 }
 
 @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 
 .cursor {
@@ -933,16 +945,30 @@ body {
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-    20%, 40%, 60%, 80% { transform: translateX(10px); }
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
 }
 
 @keyframes flicker {
-    0%, 100% { opacity: 1; }
-    25% { opacity: 0.5; }
-    50% { opacity: 0.7; }
-    75% { opacity: 0.2; }
+    0%, 100% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    75% {
+        opacity: 0.2;
+    }
 }
 
 .deleting {
@@ -976,7 +1002,7 @@ body {
 }
 
 /* Terminal Control Buttons */
-.close:hover::before, 
+.close:hover::before,
 .close:hover::after {
     content: '';
     position: absolute;
@@ -1369,19 +1395,19 @@ body {
     .projects-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .skills-container {
         grid-template-columns: 1fr;
     }
-    
+
     .project-card {
         max-width: 100%;
     }
-    
+
     .portfolio-name {
         font-size: 1.8rem;
     }
-    
+
     .portfolio-title {
         font-size: 1rem;
     }
@@ -1392,24 +1418,24 @@ body {
         padding: 10px;
         font-size: 12px;
     }
-    
+
     .line {
         font-size: 12px;
     }
-    
+
     #command-input {
         font-size: 12px;
     }
-    
+
     .project-link a {
         padding: 8px 16px;
         font-size: 14px;
     }
-    
+
     .section-title {
         font-size: 16px;
     }
-    
+
     .portfolio-back-button {
         font-size: 12px;
         padding: 6px 12px;
@@ -1548,11 +1574,11 @@ body {
     .vim-editor {
         font-size: 0.9em;
     }
-    
+
     .vim-content {
         min-height: 120px;
     }
-    
+
     .vim-hint {
         font-size: 0.8em;
     }
@@ -1574,24 +1600,24 @@ body {
 
 /* Dodatkowe style dla Vim */
 .vim-mode span {
-  white-space: nowrap;
-  display: inline-block;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 .vim-footer span {
-  white-space: nowrap;
-  color: #8f8f8f;
+    white-space: nowrap;
+    color: #8f8f8f;
 }
 
 .vim-footer span:nth-child(2) {
-  color: #e5c07b;
-  font-style: italic;
-  flex: 1;
-  text-align: center;
+    color: #e5c07b;
+    font-style: italic;
+    flex: 1;
+    text-align: center;
 }
 
 /* Naprawiony styl dla prompt-user w trybie Vim */
 .input-line .prompt-user span {
-  white-space: nowrap;
-  display: inline-block;
+    white-space: nowrap;
+    display: inline-block;
 }
