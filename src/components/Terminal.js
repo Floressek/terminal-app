@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import './Terminal.css';
+import '../styles/Terminal.css';
 
 const Terminal = () => {
     const [commandHistory, setCommandHistory] = useState([]);
@@ -55,25 +55,25 @@ const Terminal = () => {
 
     const skills = {
         languages: [
-            { name: "Python", level: 75 },
-            { name: "JavaScript", level: 65 },
-            { name: "SQL", level: 60 },
-            { name: "C++", level: 55 },
-            { name: "Java", level: 50 },
-            { name: "TypeScript", level: 45 },
-            { name: "C", level: 40 }
+            {name: "Python", level: 75},
+            {name: "JavaScript", level: 65},
+            {name: "SQL", level: 60},
+            {name: "C++", level: 55},
+            {name: "Java", level: 50},
+            {name: "TypeScript", level: 45},
+            {name: "C", level: 40}
         ],
         tools: [
-            { name: "Docker", level: 55 },
-            { name: "Git", level: 70 },
-            { name: "Jupyter", level: 65 },
-            { name: "JetBrains IDE", level: 60 }
+            {name: "Docker", level: 55},
+            {name: "Git", level: 70},
+            {name: "Jupyter", level: 65},
+            {name: "JetBrains IDE", level: 60}
         ],
         databases: [
-            { name: "MySQL", level: 65 },
-            { name: "MongoDB", level: 50 },
-            { name: "Oracle", level: 40 },
-            { name: "Azure Cosmos", level: 45 }
+            {name: "MySQL", level: 65},
+            {name: "MongoDB", level: 50},
+            {name: "Oracle", level: 40},
+            {name: "Azure Cosmos", level: 45}
         ]
     };
 
@@ -966,7 +966,8 @@ set showcmd`
 
                                 <div className="portfolio-about">
                                     <div className="section-title">
-                                        <span className="section-icon">👨‍💻</span>
+                                        <span className="section-icon" role="img" aria-label="smile"
+                                        >👨‍💻</span>
                                         <span>ABOUT ME</span>
                                     </div>
                                     <div className="about-content">
@@ -980,7 +981,8 @@ set showcmd`
 
                                 <div className="portfolio-section">
                                     <div className="section-title">
-                                        <span className="section-icon">🚀</span>
+                                        <span className="section-icon" role="img" aria-label="smile"
+                                        >🚀</span>
                                         <span>PROJECTS</span>
                                     </div>
                                     <div className="projects-grid">
@@ -1008,13 +1010,18 @@ set showcmd`
                                 </div>
 
                                 <div className="portfolio-section">
-                                    <div className="section-title">
-                                        <span className="section-icon">🛠️</span>
+                                    <div className="section-title" role="img" aria-label="smile"
+                                    >
+                                        <span className="section-icon" role="img" aria-label="smile"
+                                        >🛠️</span>
                                         <span>TECHNICAL SKILLS</span>
                                     </div>
-                                    <div className="skills-container">
-                                        <div className="skill-category">
-                                            <h4><span className="category-icon">💻</span> Programming Languages</h4>
+                                    <div className="skills-container" role="img" aria-label="smile"
+                                    >
+                                        <div className="skill-category" role="img" aria-label="smile"
+                                        >
+                                            <h4><span className="category-icon" role="img" aria-label="smile"
+                                            >💻</span> Programming Languages</h4>
                                             <div className="skills-grid">
                                                 {skills.languages.map((skill, index) => (
                                                     <div key={index} className="skill">
@@ -1031,8 +1038,9 @@ set showcmd`
                                             </div>
                                         </div>
 
-                                        <div className="skill-category">
-                                            <h4><span className="category-icon">🔧</span> Tools & Technologies</h4>
+                                        <div className="skill-category" role="img" aria-label="smile">
+                                            <h4><span className="category-icon" role="img" aria-label="smile"
+                                            >🔧</span> Tools & Technologies</h4>
                                             <div className="skills-grid">
                                                 {skills.tools.map((skill, index) => (
                                                     <div key={index} className="skill">
@@ -1049,8 +1057,10 @@ set showcmd`
                                             </div>
                                         </div>
 
-                                        <div className="skill-category">
-                                            <h4><span className="category-icon">🗄️</span> Databases</h4>
+                                        <div className="skill-category" role="img" aria-label="smile"
+                                        >
+                                            <h4><span className="category-icon" role="img" aria-label="smile"
+                                            >🗄️</span> Databases</h4>
                                             <div className="skills-grid">
                                                 {skills.databases.map((skill, index) => (
                                                     <div key={index} className="skill">
@@ -1069,7 +1079,8 @@ set showcmd`
                                     </div>
 
                                     <div className="learning-section">
-                                        <h4><span className="category-icon">🌱</span> Currently Learning</h4>
+                                        <h4><span className="category-icon" role="img" aria-label="smile"
+                                        >🌱</span> Currently Learning</h4>
                                         <div className="learning-tags">
                                             <span className="learning-tag">Machine Learning</span>
                                             <span className="learning-tag">Data Science</span>
@@ -1082,11 +1093,13 @@ set showcmd`
 
                                 <div className="portfolio-section">
                                     <div className="section-title">
-                                        <span className="section-icon">🎓</span>
+                                        <span className="section-icon" role="img" aria-label="smile"
+                                        >🎓</span>
                                         <span>EDUCATION</span>
                                     </div>
                                     <div className="education-item">
-                                        <div className="education-icon">🏫</div>
+                                        <div className="education-icon"><span role="img" aria-label="smile"
+                                        >🏫</span></div>
                                         <div className="education-details">
                                             <h4>Computer Science</h4>
                                             <p className="education-school">Wojskowa Akademia Techniczna (WAT)</p>
@@ -1099,28 +1112,34 @@ set showcmd`
 
                                 <div className="portfolio-section">
                                     <div className="section-title">
-                                        <span className="section-icon">🎯</span>
+                                        <span className="section-icon" role="img" aria-label="smile"
+                                        >🎯</span>
                                         <span>INTERESTS</span>
                                     </div>
                                     <div className="interests-container">
                                         <div className="interest-item">
-                                            <span className="interest-icon">♟️</span>
+                                            <span className="interest-icon" role="img" aria-label="smile"
+                                            >♟️</span>
                                             <span>Chess</span>
                                         </div>
                                         <div className="interest-item">
-                                            <span className="interest-icon">🧗</span>
+                                            <span className="interest-icon" role="img" aria-label="smile"
+                                            >🧗</span>
                                             <span>Bouldering</span>
                                         </div>
                                         <div className="interest-item">
-                                            <span className="interest-icon">🪚</span>
+                                            <span className="interest-icon" role="img" aria-label="smile"
+                                            >🪚</span>
                                             <span>Woodworking</span>
                                         </div>
                                         <div className="interest-item">
-                                            <span className="interest-icon">💻</span>
+                                            <span className="interest-icon" role="img" aria-label="smile"
+                                            >💻</span>
                                             <span>Coding</span>
                                         </div>
                                         <div className="interest-item">
-                                            <span className="interest-icon">📚</span>
+                                            <span className="interest-icon" role="img" aria-label="smile"
+                                            >📚</span>
                                             <span>Reading</span>
                                         </div>
                                     </div>
@@ -1128,21 +1147,25 @@ set showcmd`
 
                                 <div className="portfolio-section">
                                     <div className="section-title">
-                                        <span className="section-icon">📬</span>
+                                        <span className="section-icon" role="img" aria-label="smile"
+                                        >📬</span>
                                         <span>CONTACT</span>
                                     </div>
                                     <div className="contact-container">
                                         <div className="contact-item">
-                                            <span className="contact-icon">📧</span>
+                                            <span className="contact-icon" role="img" aria-label="smile"
+                                            >📧</span>
                                             <a href="mailto:szymon.florek@student.wat.edu.pl">szymon.florek@student.wat.edu.pl</a>
                                         </div>
                                         <div className="contact-item">
-                                            <span className="contact-icon">🌐</span>
+                                            <span className="contact-icon" role="img" aria-label="smile"
+                                            >🌐</span>
                                             <a href="https://github.com/Floressek" target="_blank"
                                                rel="noopener noreferrer">github.com/Floressek</a>
                                         </div>
                                         <div className="contact-item">
-                                            <span className="contact-icon">💼</span>
+                                            <span className="contact-icon" role="img" aria-label="smile"
+                                            >💼</span>
                                             <a href="https://linkedin.com/in/szymon-florek-33a968296" target="_blank"
                                                rel="noopener noreferrer">linkedin.com/in/szymon-florek-33a968296</a>
                                         </div>

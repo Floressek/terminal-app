@@ -1,11 +1,11 @@
 import {render, screen} from '@testing-library/react';
-import App from './App';
-import Terminal from './Terminal';
+import App from '../App';
+import Terminal from '../components/Terminal';
 import React from 'react';
 
 
 // Mock the Terminal component to isolate App testing
-jest.mock('./Terminal', () => {
+jest.mock('../components/Terminal', () => {
     return function MockTerminal() {
         return <div data-testid="terminal-component">Terminal Component</div>;
     };
@@ -22,7 +22,7 @@ describe('App Component', () => {
 });
 
 // Remove the mock to test the actual Terminal component
-jest.unmock('./Terminal');
+jest.unmock('../components/Terminal');
 
 describe('Terminal Component', () => {
     test('renders welcome message', () => {

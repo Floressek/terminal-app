@@ -21,3 +21,19 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# dotenv environment variables file
+.env
+
+# Next.js build output
+.next
+out
+# Nuxt.js build output
+.nuxt
+
+# VuePress build output
+.vuepress/dist
+
+# Package distribution
+dist
+package-lock.json
