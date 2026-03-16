@@ -44,10 +44,9 @@ export default function registerInfoCommands() {
       return `<div class="about-section">
   <h2>About Me</h2>
   <p>Hi! I'm <span style="color:#64ffda;font-weight:bold">Szymon Florek</span> \u2014 software developer, AI enthusiast, and quantum computing explorer based in <span style="color:#64ffda">Warsaw</span>.</p>
-  <p>I graduated with honors <span style="color:#ffcc00">(5.0)</span> from my BSc in Computer Science at WAT, with a thesis on <span style="color:#64ffda">"Analysis of Possibilities for Improving RAG Chatbots"</span>.</p>
+  <p>I graduated with honors <span style="color:#ffcc00">(5.0)</span> from my BSc at WAT. My thesis <span style="color:#64ffda">"Analysis of Possibilities for Improving RAG Chatbots"</span> produced <a href="https://github.com/Floressek/ImprovedRag" target="_blank" class="terminal-link">RAGx</a> \u2014 an ablation-oriented RAG system with multihop retrieval, Chain-of-Verification, and cross-encoder reranking, tested on NVIDIA H100.</p>
   <p>Currently a <span style="color:#64ffda">1st year MSc student</span> in Quantum Computing at WAT, while working at <span style="color:#64ffda">@ardium-pl</span>.</p>
-  <p>I build things with Python, TypeScript, Terraform, and AI/ML tools. Check out my work: <a href="https://floressek.com" target="_blank" class="terminal-link">floressek.com</a></p>
-  <p>Type <span class="command-highlight">portfolio</span> for a visual experience or <span class="command-highlight">work</span> for professional info.</p>
+  <p>Check out <a href="https://floressek.com" target="_blank" class="terminal-link">floressek.com</a> or type <span class="command-highlight">cat thesis.md</span> for the full thesis breakdown.</p>
 </div>`;
     },
   });
@@ -130,7 +129,10 @@ export default function registerInfoCommands() {
         `     Wojskowa Akademia Techniczna (WAT), Warsaw\n` +
         `     2022\u20132025\n` +
         `     Thesis: "Analysis of Possibilities for Improving RAG Chatbots"\n` +
-        `     Focus: Data Science, Machine Learning, AI`;
+        `     Code:   <a href="https://github.com/Floressek/ImprovedRag" target="_blank" class="terminal-link">RAGx</a> \u2014 multihop RAG + CoVe + cross-encoder reranking\n` +
+        `     Infra:  NVIDIA H100 (WAT Cloud Lab) \u2022 Qdrant \u2022 Qwen 4-bit\n` +
+        `     Eval:   1000 questions, 12 ablation configs, RAGAS metrics\n\n` +
+        `     <span style="color:#888;">Type <span class="command-highlight">cat thesis.md</span> for the full breakdown.</span>`;
     },
   });
 

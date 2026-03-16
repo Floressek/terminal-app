@@ -24,8 +24,8 @@ export default function Portfolio({ onBack }) {
       <div className="portfolio-about">
         <SectionTitle icon={'\uD83D\uDC68\u200D\uD83D\uDCBB'} title="ABOUT ME" />
         <div className="about-content">
-          <p>MSc student in Quantum Computing at WAT (Wojskowa Akademia Techniczna). Graduated BSc with honors (5.0) with a thesis on <strong>"Analysis of Possibilities for Improving RAG Chatbots"</strong>.</p>
-          <p>Currently working as a software developer at <strong>ardium-pl</strong>, building full-stack applications, cloud infrastructure, and AI-powered solutions. 45 public repositories on GitHub and counting.</p>
+          <p>MSc student in Quantum Computing at WAT. Graduated BSc with honors (5.0) &mdash; thesis produced <a href="https://github.com/Floressek/ImprovedRag" target="_blank" rel="noopener noreferrer" className="portfolio-link-inline"><strong>RAGx</strong></a>: an ablation-oriented RAG system with multihop retrieval, Chain-of-Verification, and cross-encoder reranking, evaluated on 1000 questions using NVIDIA H100.</p>
+          <p>Working as a software developer at <strong>ardium-pl</strong>, building full-stack applications, cloud infrastructure, and AI-powered solutions. 45 public repositories on GitHub.</p>
         </div>
       </div>
 
@@ -106,7 +106,7 @@ export default function Portfolio({ onBack }) {
             <p className="education-school">Wojskowa Akademia Techniczna (WAT)</p>
             <p className="education-year">2022&ndash;2025</p>
             <p className="education-focus">Thesis: "Analysis of Possibilities for Improving RAG Chatbots"</p>
-            <p className="education-focus">Focus: Data Science, Machine Learning, AI</p>
+            <p className="education-focus">Project: <a href="https://github.com/Floressek/ImprovedRag" target="_blank" rel="noopener noreferrer" className="portfolio-link-inline">RAGx</a> &mdash; multihop RAG + CoVe + reranking &bull; H100 &bull; 1000-question ablation study</p>
           </div>
         </div>
       </div>

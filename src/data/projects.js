@@ -1,8 +1,8 @@
 const projects = [
   {
-    name: 'ImprovedRag',
-    description: 'BSc thesis code \u2014 "Analysis of Possibilities for Improving RAG Chatbots". Corrective retrieval methods, evaluation of techniques for chatbot accuracy. Graduated with honors (5.0).',
-    tech: ['Python', 'RAG', 'LangChain', 'Vector DB', 'NLP', 'AI'],
+    name: 'RAGx (ImprovedRag)',
+    description: 'BSc thesis \u2014 ablation-oriented RAG system with adaptive query rewriting, multihop retrieval, Chain-of-Verification (CoVe), and cross-encoder reranking. Evaluated on 1000 synthetic questions with RAGAS metrics. Tested on NVIDIA H100 at WAT Cloud Lab. Honors (5.0).',
+    tech: ['Python', 'FastAPI', 'Qdrant', 'spaCy', 'Qwen', 'HuggingFace', 'Docker'],
     link: 'github.com/Floressek/ImprovedRag',
     featured: true,
   },
