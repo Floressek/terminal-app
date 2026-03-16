@@ -64,26 +64,32 @@ export default function Terminal() {
 
     const cwd = fsRef.current.cwdShort();
 
-    if (isVimMode && trimmed !== 'please-let-me-out') {
-      addOutput(`<span style="color:red;">Not an editor command: ${trimmed}</span>`);
+    const ctx = {
+      fs: fsRef.current,
+      addOutput,
+      clearOutput,
+      setTheme,
+      theme,
+      setVimMode,
+      isVimMode,
+      setPortfolioVisible,
+      setDeleting,
+      setOutput,
+      history: historyRef.current,
+      outputRef,
+    };
+
+    if (isVimMode) {
+      const vimCmds = [':q', ':q!', ':wq', ':wq!', 'ZZ', 'ZQ', 'exit', 'quit', 'please-let-me-out'];
+      if (vimCmds.includes(trimmed)) {
+        const result = execute(trimmed, ctx);
+        if (result) addOutput(result);
+      } else {
+        addOutput(`<span style="color:#ff5555;">E492: Not an editor command: ${trimmed}</span>`);
+        addOutput(`<span style="color:#888;">Hint: try <span style="color:#e5c07b;">:q!</span> or <span style="color:#e5c07b;">:wq</span> ... or discover the secret command (<span style="color:#98c379;">cat .vimrc</span>)</span>`);
+      }
     } else {
       addOutput(`<span class="prompt-user">szymon@portfolio:${cwd}$</span><span style="color:#fff"> ${trimmed}</span>`);
-
-      const ctx = {
-        fs: fsRef.current,
-        addOutput,
-        clearOutput,
-        setTheme,
-        theme,
-        setVimMode,
-        isVimMode,
-        setPortfolioVisible,
-        setDeleting,
-        setOutput,
-        history: historyRef.current,
-        outputRef,
-      };
-
       const result = execute(trimmed, ctx);
       if (result) addOutput(result);
     }

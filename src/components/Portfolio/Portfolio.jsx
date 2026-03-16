@@ -49,7 +49,8 @@ export default function Portfolio({ onBack }) {
         <SectionTitle icon={'\uD83D\uDE80'} title="PROJECTS" />
         <div className="projects-grid">
           {projects.map((project, i) => (
-            <div key={i} className="project-card">
+            <div key={i} className={`project-card${project.featured ? ' featured' : ''}`}>
+              {project.featured && <div className="featured-badge">BSc Thesis</div>}
               <div className="project-header">
                 <h3>{project.name}</h3>
                 <div className="project-icon">{project.name.charAt(0)}</div>

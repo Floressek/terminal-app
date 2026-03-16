@@ -56,12 +56,13 @@ export default function registerInfoCommands() {
     description: 'View my projects',
     usage: 'projects',
     handler() {
-      const list = projects.map((p, i) =>
-        `<span style="color:#64ffda;font-weight:bold">Project ${i + 1}: ${p.name}</span>\n` +
-        `  Description: ${p.description}\n` +
-        `  Technologies: ${p.tech.join(', ')}\n` +
-        `  Link: <a href="https://${p.link}" target="_blank" class="terminal-link">${p.link}</a>\n`
-      ).join('\n');
+      const list = projects.map((p, i) => {
+        const badge = p.featured ? ' <span style="background:#ffcc00;color:#000;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:bold;">BSc THESIS</span>' : '';
+        return `<span style="color:#64ffda;font-weight:bold">Project ${i + 1}: ${p.name}</span>${badge}\n` +
+          `  Description: ${p.description}\n` +
+          `  Technologies: ${p.tech.join(', ')}\n` +
+          `  Link: <a href="https://${p.link}" target="_blank" class="terminal-link">${p.link}</a>\n`;
+      }).join('\n');
 
       return `<span style="color:#ffcc00;font-weight:bold">My Projects</span> <span style="color:#555">(${projects.length} featured / 45 total on GitHub)</span>\n${'\u2550'.repeat(50)}\n\n${list}` +
         `\n<span style="color:#aaa">See all 45 repos: <a href="https://github.com/Floressek?tab=repositories" target="_blank" class="terminal-link">github.com/Floressek</a></span>`;

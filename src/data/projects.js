@@ -1,7 +1,14 @@
 const projects = [
   {
+    name: 'ImprovedRag',
+    description: 'BSc thesis code \u2014 "Analysis of Possibilities for Improving RAG Chatbots". Corrective retrieval methods, evaluation of techniques for chatbot accuracy. Graduated with honors (5.0).',
+    tech: ['Python', 'RAG', 'LangChain', 'Vector DB', 'NLP', 'AI'],
+    link: 'github.com/Floressek/ImprovedRag',
+    featured: true,
+  },
+  {
     name: 'Azure-db-RAG',
-    description: 'RAG system for Cosmos DB (MongoDB vCore) on Azure, deployed on WhatsApp. Part of BSc thesis research on improving RAG chatbot capabilities.',
+    description: 'Earlier RAG exploration on Azure Cosmos DB (MongoDB vCore) with WhatsApp integration. Preceded the thesis work in ImprovedRag.',
     tech: ['Python', 'Azure', 'MongoDB', 'RAG', 'LangChain'],
     link: 'github.com/Floressek/Azure-db-RAG',
   },
