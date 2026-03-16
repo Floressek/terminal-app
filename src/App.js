@@ -1,13 +1,16 @@
 import React from 'react';
+import Terminal from './components/Terminal/Terminal';
+import { ThemeProvider } from './context/ThemeContext';
 import './App.css';
-import Terminal from './Terminal';
 
 function App() {
-    return (
-        <div className="App">
-            <Terminal/>
-        </div>
-    );
+  return (
+    <ThemeProvider>
+      <div className="App">
+        <Terminal />
+      </div>
+    </ThemeProvider>
+  );
 }
 
 export default App;
