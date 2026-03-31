@@ -38,8 +38,8 @@ export default function registerFunCommands() {
           `<div style="color:#0f0;margin-top:16px;text-shadow:0 0 5px #0f0;text-align:center;">
   <p style="margin-bottom:12px;font-size:15px;">Choose your destiny:</p>
   <div style="display:flex;justify-content:center;gap:24px;margin:16px 0;">
-    <button style="background:linear-gradient(135deg,#cc0000,#ff3333);color:#fff;border:none;padding:12px 28px;border-radius:6px;cursor:pointer;font-weight:bold;font-size:14px;box-shadow:0 0 20px rgba(255,0,0,0.5);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="(function(){document.dispatchEvent(new CustomEvent('matrix-red-pill'))})()">RED PILL \uD83D\uDD34</button>
-    <button style="background:linear-gradient(135deg,#0000cc,#3333ff);color:#fff;border:none;padding:12px 28px;border-radius:6px;cursor:pointer;font-weight:bold;font-size:14px;box-shadow:0 0 20px rgba(0,0,255,0.5);transition:all 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onclick="(function(){document.dispatchEvent(new CustomEvent('matrix-blue-pill'))})()">BLUE PILL \uD83D\uDD35</button>
+    <button data-action="matrix-red-pill" style="background:linear-gradient(135deg,#cc0000,#ff3333);color:#fff;border:none;padding:12px 28px;border-radius:6px;cursor:pointer;font-weight:bold;font-size:14px;box-shadow:0 0 20px rgba(255,0,0,0.5);transition:transform 0.2s;">RED PILL 🔴</button>
+    <button data-action="matrix-blue-pill" style="background:linear-gradient(135deg,#0000cc,#3333ff);color:#fff;border:none;padding:12px 28px;border-radius:6px;cursor:pointer;font-weight:bold;font-size:14px;box-shadow:0 0 20px rgba(0,0,255,0.5);transition:transform 0.2s;">BLUE PILL 🔵</button>
   </div>
   <p style="color:#0a0;font-size:12px;margin-top:8px;">Red = truth \u2022 Blue = blissful ignorance</p>
 </div>`
