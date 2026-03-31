@@ -208,7 +208,13 @@ export default function registerSystemCommands() {
         return 'grep: no input';
       }
 
-      const re = new RegExp(pattern, flags.i ? 'gi' : 'g');
+      let re;
+      try {
+        re = new RegExp(pattern, flags.i ? 'gi' : 'g');
+      } catch (err) {
+        return `<span style="color:#ff6b6b">grep: invalid pattern '${pattern}': ${err.message}</span>`;
+      }
+
       const lines = text.split('\n');
       const matches = [];
       lines.forEach((line, i) => {
