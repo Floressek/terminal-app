@@ -43,7 +43,7 @@ export function execute(input, ctx) {
   const trimmed = input.trim();
   if (!trimmed) return null;
 
-  if (trimmed.includes(' | ')) {
+  if (trimmed.includes('|')) {
     return executePipeline(trimmed, ctx);
   }
   return executeSingle(trimmed, ctx);
